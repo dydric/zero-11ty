@@ -1,0 +1,13 @@
+---
+layout: base
+---
+{% include 'header.njk' %}
+
+<main class="flex-1 flex items-center justify-center p-4">
+	<div class="text-center">
+		<h1 class="text-xl lg:text-2xl font-bold font-mono">{{ title }}</h1>
+		{{ content | safe }}
+	</div>
+</main>
+
+{% include 'footer.njk' %}
