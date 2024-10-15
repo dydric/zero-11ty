@@ -32,5 +32,6 @@
 
     This command will generate a fully static, production-ready version of your site in the `_site` folder.
 
-**Start from zero, build something great.**
-Enj0y!
+-------
+
+### Start from zero, build something great.
