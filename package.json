@@ -4,22 +4,25 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf _site .cache",
+    "clean": "rm -rf _site .cache src/media/processed",
     "w:11ty": "eleventy --serve",
     "b:11ty": "eleventy",
-    "w:sass": "sass --watch src/css:_site/css",
-    "b:sass": "sass --style compressed src/css:_site/css --no-source-map",
-    "w:tw": "tailwindcss -i src/css/tw.css -o _site/css/tw.css --watch",
-    "b:tw": "tailwindcss -i src/css/tw.css -o _site/css/tw.css --minify",
+    "w:sass": "sass --watch src/css/scss:_site/css/",
+    "b:sass": "sass --style compressed src/css/scss:_site/css --no-source-map",
+    "w:tw": "tailwindcss -i src/css/tw/tw.css -o src/css/tw/tw.build.css --watch",
+    "b:tw": "tailwindcss -i src/css/tw/tw.css -o _site/css/tw/tw.css --minify",
     "w:js": "esbuild src/js/script.js --outfile=_site/js/script.js --bundle --watch",
     "b:js": "esbuild src/js/script.js --outfile=_site/js/script.js --bundle --minify ",
     "dev": "cross-env NODE_ENV=development npm-run-all --parallel w:*",
-    "build": "cross-env NODE_ENV=production npm-run-all clean b:*"
+    "build": "cross-env NODE_ENV=production npm-run-all clean b:*",
+    "netlify": "npx netlify dev"
   },
   "devDependencies": {
-    "@11ty/eleventy": "3.0.0"
+    "@11ty/eleventy": "3.0.0",
+    "@11ty/eleventy-img": "^5.0.0"
   },
   "dependencies": {
+    "@11ty/eleventy-fetch": "^4.0.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "esbuild": "^0.24.0",

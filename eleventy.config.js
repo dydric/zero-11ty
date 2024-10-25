@@ -2,6 +2,10 @@ import "dotenv/config";
 import htmlmin from "html-minifier-terser";
 import readableDate from './src/lib/filters/readableDate.js';
 
+import path from "path";
+import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
+import Image from "@11ty/eleventy-img";
+
 export default function(eleventyConfig) {
 
   const isProd = process.env.NODE_ENV === "production";
@@ -15,11 +19,43 @@ export default function(eleventyConfig) {
 
   // Pass-through
   eleventyConfig.addPassthroughCopy({
-    "src/assets/": "/assets/"
+    "src/assets/": "/assets/",
+    "src/media/processed/" : "/media/processed",
+    "src/css/tw/tw.build.css": "/css/tw.css",
   });
 
   // Filters
   eleventyConfig.addFilter('readableDate', readableDate);
+
+  // Images
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		extensions: "html",
+		formats: ["webp", "jpeg"],
+    // formats: ["auto"],
+    // widths: ["auto"],
+		defaultAttributes: {
+			loading: "lazy",
+			decoding: "async",
+		},
+	});
+
+  eleventyConfig.addShortcode("image", async function (src, alt, widths = [300, 600], sizes = "100vw") {
+    let metadata = await Image(`${src}`, {
+      widths,
+      formats: ["avif", "jpeg"],
+      urlPath: "/media/processed",
+      outputDir: "./src/media/processed",
+    });
+
+    let imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    };
+
+    return Image.generateHTML(metadata, imageAttributes);
+  });
 
   // Minify HTML
   if (isProd) {

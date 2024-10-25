@@ -32,6 +32,14 @@
 
     This command will generate a fully static, production-ready version of your site in the `_site` folder.
 
+5. Netlify development
+
+    ```bash
+    npm run netlify
+    ```
+
+    Runs a Netlify server with working functions. Please grant access with `npx netlify login` after installation
+
 -------
 
-### Start from zero, build something great.
+### Start from zero, build something great

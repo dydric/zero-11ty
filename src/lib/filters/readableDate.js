@@ -1,24 +1,20 @@
 export default function (postdate) {
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
 
-  let day = postdate.getDate();
-  let month = months[postdate.getMonth()];
-  let year = postdate.getFullYear();
+  const date = new Date(postdate);
 
-  return month + "_" + day + "/" + year;
+  if (isNaN(date)) {
+    return "Invalid date";
+  }
+
+  let day = date.getDate();
+  let month = months[date.getMonth()];
+  let year = date.getFullYear();
+
+  return month + " " + day + ", " + year;
 }
 
 

@@ -1,5 +1,7 @@
-# Build
+# Eleventy
 _site
+src/media/processed
+src/css/tw/tw.build.css
 
 # Log and debug files
 logs

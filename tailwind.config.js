@@ -2,7 +2,9 @@
 export default {
   content: ["./src/**/*.{html,js,njk,md,vue,jsx,tsx,svelte}"],
   theme: {
-    extend: {},
+    extend: {
+
+    },
   },
   plugins: [],
 }
