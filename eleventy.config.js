@@ -21,7 +21,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "src/assets/": "/assets/",
     "src/media/processed/" : "/media/processed",
-    "src/css/tw/tw.build.css": "/css/tw.css",
+    "src/css/tw/tw.build.css" : "/css/tw.css",
   });
 
   // Filters
